@@ -1,0 +1,1 @@
+export type TObjCoordinate = {[key: string]: number;}
