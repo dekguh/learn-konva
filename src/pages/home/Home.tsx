@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import React, { useContext, useRef, useState } from 'react'
-import { Arrow, Layer, Line, Rect, Stage } from 'react-konva'
+import { Arrow, Layer, Line, Rect, Stage, Text } from 'react-konva'
 import { HomeContext } from './HomeContext'
 import { calculateCoorCenterLine, convertObjPointsToArray, getAngleDegreesFromPoints, getNextLineCoordinate } from '@/utils/formula'
 
@@ -176,6 +176,38 @@ const Home = () => {
           <Layer>
             {roiList?.map((item, index) => (
               <React.Fragment key={index}>
+                {/* TEXT IN AND OUT */}
+                {(item.lineUpPoints && item.lineBottomPoints) && (
+                  <>
+                    <Text
+                      x={getNextLineCoordinate(item.lineUpPoints, -20).x1}
+                      y={getNextLineCoordinate(item.lineUpPoints, -20).y1}
+                      text="in"
+                      rotation={getAngleDegreesFromPoints(item.lineUpPoints)}
+                    />
+
+                    <Text
+                      x={getNextLineCoordinate(item.lineUpPoints, -20).x2}
+                      y={getNextLineCoordinate(item.lineUpPoints, -20).y2}
+                      text="in"
+                      rotation={getAngleDegreesFromPoints(item.lineUpPoints)}
+                    />
+
+                    <Text
+                      x={getNextLineCoordinate(item.lineBottomPoints, 20).x1}
+                      y={getNextLineCoordinate(item.lineBottomPoints, 20).y1}
+                      text="out"
+                      rotation={getAngleDegreesFromPoints(item.lineBottomPoints)}
+                    />
+
+                    <Text
+                      x={getNextLineCoordinate(item.lineBottomPoints, 20).x2}
+                      y={getNextLineCoordinate(item.lineBottomPoints, 20).y2}
+                      text="out"
+                      rotation={getAngleDegreesFromPoints(item.lineBottomPoints)}
+                    />
+                  </>
+                )}
                 {/* LINE UP */}
                 <Line
                   name={`${item.index}`}
