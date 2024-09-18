@@ -138,6 +138,7 @@ const Home = () => {
 
   const handleClearAllClick = () : void => {
     if (updateRoiList) updateRoiList([])
+    if (updatePolygonList) updatePolygonList([])
   }
 
   const handleDrawClick = (type: 'roi' | 'polygon') : void => {
